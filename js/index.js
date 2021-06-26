@@ -52,7 +52,31 @@ function removeProduct(event) {
 // ITERATION 5
 
 function createProduct() {
-  
+  //Getting the elements
+  const nameElement = document.getElementById('name-input');
+  const priceElement = document.getElementById('price-input');
+  const tbodyElement = document.querySelector('tbody');
+
+  // Create new element
+  const newTrElement = document.createElement('tr');
+  newTrElement.className = "product";
+  newTrElement.innerHTML = `
+  <td class="name">
+    <span>${nameElement.value}</span>
+  </td>
+  <td class="price">$<span>${priceElement.value}</span></td>
+  <td class="quantity">
+    <input type="number" value="0" min="0" placeholder="Quantity" />
+  </td>
+  <td class="subtotal">$<span>0</span></td>
+  <td class="action">
+    <button class="btn btn-remove">Remove</button>
+  </td>`
+
+  //attaching the element to the dom
+  tbodyElement.appendChild(newTrElement);
+
+
 }
 
 window.addEventListener('load', () => {
@@ -64,5 +88,7 @@ window.addEventListener('load', () => {
   for (let button of removeButtonElements) {
     button.addEventListener('click', removeProduct)
   }
+  const addProductButtonElement = document.getElementById('create');
+  addProductButtonElement.addEventListener('click', createProduct)
 
 });
